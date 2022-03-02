@@ -1,0 +1,21 @@
+#!/bin/bash
+#---sachsudia.tail10.x contains all commands you want to execute---#
+Assume you have a file such as sachsudia.tail10.x which contains the following 3 lines:
+curl --silent https://tusachtiengviet.com/p107a998/2/quan-luc-viet-nam-chong-tay-xam >>sachsudia.tail10.html
+curl --silent https://tusachtiengviet.com/p107a537/mot-con-gio-bui >>sachsudia.tail10.html
+curl --silent https://tusachtiengviet.com/p107a1186/lich-su-ngan-nguoi-viet >>sachsudia.tail10.html
+And you want to execute these commands with a random pause to reduce the load on the server.  You can either insert a 'sleep' command after each line, like so:
+curl --silent https://tusachtiengviet.com/p107a998/2/quan-luc-viet-nam-chong-tay-xam >>sachsudia.tail10.html
+sleep 5
+curl --silent https://tusachtiengviet.com/p107a537/mot-con-gio-bui >>sachsudia.tail10.html
+sleep 5
+curl --silent https://tusachtiengviet.com/p107a1186/lich-su-ngan-nguoi-viet >>sachsudia.tail10.html
+Or you can write a small bash file to read each line in, and 'sleep' after each line, like so:
+exec 4<sachsudia.tail10.x           # opening  file via descriptor
+while read LINE <&4; do
+    printf "%s\n" "$LINE"           # just to watch that command is proper
+    $LINE                           # execute command
+done
+
+#so you parse the file and pick out the links to the pdf files
+sed 's|.pdf|.pdf\n|g' sachsudia.tail10.html | grep pdf | sed 's|https|\nhttps|g' | grep https | grep pdf
