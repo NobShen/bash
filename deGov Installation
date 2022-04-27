@@ -29,3 +29,5 @@ FLUSH PRIVILEGES;
 </Directory>
 # then restart apache for the change to take effect
 >systemctl restart apache2
+# check this link for further info https://www.drupal.org/docs/7/configuring-clean-urls/enable-clean-urls
+
