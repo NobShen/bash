@@ -1,0 +1,16 @@
+>cd $HOME
+# install mysql
+>sudo apt install mysql-server
+>sudo systemctl start mysql.service
+
+# mysql does not let root access remotely so you'll need to fix it
+# fix #1698 - Access denied for user 'root'@'localhost'
+>sudo mysql --user=root mysql
+>CREATE USER 'phpmyadmin'@'localhost' IDENTIFIED BY '<please_replace_this>';
+GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+# create the deGov project via Composer
+>cd $HOME
+>composer create-project degov/degov-project deGov/ --prefer-source --keep-vcs
+>cd deGov
