@@ -14,3 +14,18 @@ FLUSH PRIVILEGES;
 >cd $HOME
 >composer create-project degov/degov-project deGov/ --prefer-source --keep-vcs
 >cd deGov
+
+# enable clean urls
+# first list all modules in apache to see if already included
+>apache2ctl -M 
+# if already included then just enable it
+>a2enmod rewrite
+# also check if AllowOverride is set to All by editing apache2.conf.  This file is located at /etc/apache2
+# since all our files for deGov are already moved under /var/www/html, we just allow override on this dir
+>sudo nano apache2.conf
+# change AllowOverride None to AllowOverride All as follow:
+<Directory "/var/www/html">
+ AllowOverride All
+</Directory>
+# then restart apache for the change to take effect
+>systemctl restart apache2
