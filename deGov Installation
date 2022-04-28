@@ -18,6 +18,9 @@ FLUSH PRIVILEGES;
 # if you just want to install a plain Drupal
 >composer create-project drupal/recommended-project drupal9/ --prefer-source --keep-vcs
 
+# if a specific version is needed
+>composer create-project drupal/drupal:8.6.10 .
+
 # move deGov/ to /var/www/html/
 >sudo mv deGov/ /var/www/html/
 # then set www-data as owner
