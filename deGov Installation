@@ -15,6 +15,9 @@ FLUSH PRIVILEGES;
 >composer create-project degov/degov-project deGov/ --prefer-source --keep-vcs
 >cd deGov
 
+# if you just want to install a plain Drupal
+>composer create-project drupal/recommended-project drupal9/ --prefer-source --keep-vcs
+
 # move deGov/ to /var/www/html/
 >sudo mv deGov/ /var/www/html/
 # then set www-data as owner
