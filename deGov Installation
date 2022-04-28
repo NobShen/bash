@@ -21,6 +21,10 @@ FLUSH PRIVILEGES;
 >sudo chown -R www-data:www-data /var/www/html/
 >sudo chmod -R 755 /var/www/html/
 
+# change apache to load from deGov/
+>sudo nano /etc/apache2/sites-enabled/000-default.conf
+  DocumentRoot /var/www/html/deGov/docroot
+
 # enable clean urls
 # first list all modules in apache to see if already included
 >apache2ctl -M 
@@ -30,9 +34,9 @@ FLUSH PRIVILEGES;
 # since all our files for deGov are already moved under /var/www/html, we just allow override on this dir
 >sudo nano apache2.conf
 # change AllowOverride None to AllowOverride All as follow:
-<Directory "/var/www/html">
- AllowOverride All
-</Directory>
+  <Directory "/var/www/html">
+   AllowOverride All
+  </Directory>
 # then restart apache for the change to take effect
 >systemctl restart apache2
 # check this link for further info https://www.drupal.org/docs/7/configuring-clean-urls/enable-clean-urls
