@@ -30,6 +30,10 @@ FLUSH PRIVILEGES;
 # change apache to load from deGov/
 >sudo nano /etc/apache2/sites-enabled/000-default.conf
   DocumentRoot /var/www/html/deGov/docroot
+  
+# work on Entity Questions and Answers
+>cd deGov/
+>composer require 'drupal/questions_answers:^1.12'
 
 # enable clean urls
 # first list all modules in apache to see if already included
