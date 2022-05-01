@@ -58,4 +58,8 @@ FLUSH PRIVILEGES;
 >systemctl restart systemd-logind.service
 >sudo apt install net-tools
 
+# install mysql server (ubuntu server)
+>sudo apt-get install mysql-server
+
+
 
