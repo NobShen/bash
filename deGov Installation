@@ -51,3 +51,11 @@ FLUSH PRIVILEGES;
 >systemctl restart apache2
 # check this link for further info https://www.drupal.org/docs/7/configuring-clean-urls/enable-clean-urls
 
+# remove lid hibernation
+>sudo gedit /etc/systemd/logind.conf
+
+# then restart to take effect
+>systemctl restart systemd-logind.service
+>sudo apt install net-tools
+
+
